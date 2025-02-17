@@ -32,7 +32,34 @@ InputField.propTypes = {
   max: PropTypes.string,
 }
 
+const SelectField = ({ label, value, onChange, options }) => {
+  const handleChange = (e) => {
+    onChange(e.target.value)
+  }
+
+  return (
+    <div style={styles.inputGroup}>
+      <label style={styles.label}>{label}:</label>
+      <select value={value} onChange={handleChange} style={styles.input}>
+        {options.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+    </div>
+  )
+}
+
+SelectField.propTypes = {
+  label: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
+  onChange: PropTypes.func.isRequired,
+  options: PropTypes.array.isRequired
+}
+
 const EVChargingCalculator = () => {
+  const [phases, setPhases] = useState(3)
   const [batteryCapacity, setBatteryCapacity] = useState(77)
   const [amperage, setAmperage] = useState(16)
   const [voltage, setVoltage] = useState(230)
@@ -40,7 +67,7 @@ const EVChargingCalculator = () => {
   const [targetCharge, setTargetCharge] = useState(80)
 
   // Dynamically calculate values instead of storing them in state
-  const chargingPower = (3 * amperage * voltage) / 1000 // in kW
+  const chargingPower = (phases * amperage * voltage) / 1000 // in kW
   const chargingSpeed = (chargingPower / batteryCapacity) * 100 // % per hour
   const chargeNeeded = targetCharge - initialCharge // % needed
   const hoursNeeded = chargeNeeded / chargingSpeed // total hours required
@@ -55,6 +82,13 @@ const EVChargingCalculator = () => {
           value={batteryCapacity}
           onChange={setBatteryCapacity}
           min={0}
+        />
+
+        <SelectField
+          label='Phases'
+          value={phases}
+          onChange={setPhases}
+          options={[1, 3]}
         />
 
         <div style={styles.twoColumns}>

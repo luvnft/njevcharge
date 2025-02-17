@@ -68,6 +68,6 @@ const styles = {
       textDecoration: 'underline'
     }
   }
-};
+}
 
 export default styles

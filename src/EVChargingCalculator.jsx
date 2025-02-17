@@ -2,6 +2,36 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles';
 
+// Move the InputField component outside
+const InputField = ({ label, value, onChange, min, max }) => {
+  const handleChange = (e) => {
+    const newValue = parseFloat(e.target.value) || 0;
+    onChange(newValue);
+  };
+
+  return (
+    <div style={styles.inputGroup}>
+      <label style={styles.label}>{label}</label>
+      <input
+        type="number"
+        value={value}
+        onChange={handleChange}
+        min={min}
+        max={max}
+        style={styles.input}
+      />
+    </div>
+  );
+};
+
+InputField.propTypes = {
+  label: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
+  onChange: PropTypes.func.isRequired,
+  min: PropTypes.string,
+  max: PropTypes.string,
+};
+
 const EVChargingCalculator = () => {
   const [batteryCapacity, setBatteryCapacity] = useState(77);
   const [amperage, setAmperage] = useState(16);
@@ -14,37 +44,6 @@ const EVChargingCalculator = () => {
   const chargingSpeed = (chargingPower / batteryCapacity) * 100; // % per hour
   const chargeNeeded = targetCharge - initialCharge; // % needed
   const hoursNeeded = chargeNeeded / chargingSpeed; // total hours required
-
-  const InputField = ({ label, value, onChange, min, max }) => {
-    const [localValue, setLocalValue] = useState(value);
-
-    const handleBlur = () => {
-      onChange(localValue);
-    };
-
-    return (
-      <div style={styles.inputGroup}>
-        <label style={styles.label}>{label}</label>
-        <input
-          type="number"
-          value={localValue}
-          onChange={(e) => setLocalValue(parseFloat(e.target.value) || 0)}
-          onBlur={handleBlur} // Only update parent state when leaving the input
-          min={min}
-          max={max}
-          style={styles.input}
-        />
-      </div>
-    );
-  };
-
-  InputField.propTypes = {
-    label: PropTypes.string.isRequired,
-    value: PropTypes.number.isRequired,
-    onChange: PropTypes.func.isRequired,
-    min: PropTypes.string,
-    max: PropTypes.string,
-  };
 
   return (
     <div style={styles.container}>
@@ -63,13 +62,15 @@ const EVChargingCalculator = () => {
             label="Charge current (A)"
             value={amperage}
             onChange={setAmperage}
-            min="0"
+            min={0}
+            max={16}
           />
           <InputField
             label="Grid voltage (V)"
             value={voltage}
             onChange={setVoltage}
             min="0"
+            max={240}
           />
         </div>
 
@@ -85,7 +86,7 @@ const EVChargingCalculator = () => {
             label="Target charge (%)"
             value={targetCharge}
             onChange={setTargetCharge}
-            min="0"
+            min={initialCharge}
             max="100"
           />
         </div>
@@ -101,7 +102,10 @@ const EVChargingCalculator = () => {
           </div>
           <div style={styles.resultRow}>
             <span style={styles.resultLabel}>Time needed:</span>
-            <span style={styles.resultValue}>{Math.floor(hoursNeeded)} hours {Math.round((hoursNeeded % 1) * 60)} minutes ({hoursNeeded.toFixed(1)} hours)</span>
+            <span style={styles.resultValue}>
+              {Math.floor(hoursNeeded)} hours {Math.round((hoursNeeded % 1) * 60)} minutes (
+              {hoursNeeded.toFixed(1)} hours)
+            </span>
           </div>
         </div>
         <div style={styles.githubLink}>

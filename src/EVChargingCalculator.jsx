@@ -1,19 +1,19 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
-import styles from './styles';
+import { useState } from 'react'
+import PropTypes from 'prop-types'
+import styles from './styles'
 
-// Move the InputField component outside
+// InputField component
 const InputField = ({ label, value, onChange, min, max }) => {
   const handleChange = (e) => {
-    const newValue = parseFloat(e.target.value) || 0;
-    onChange(newValue);
-  };
+    const newValue = parseFloat(e.target.value) || 0
+    onChange(newValue)
+  }
 
   return (
     <div style={styles.inputGroup}>
-      <label style={styles.label}>{label}</label>
+      <label style={styles.label}>{label}: <strong>{value}</strong></label>
       <input
-        type="number"
+        type='range'
         value={value}
         onChange={handleChange}
         min={min}
@@ -21,8 +21,8 @@ const InputField = ({ label, value, onChange, min, max }) => {
         style={styles.input}
       />
     </div>
-  );
-};
+  )
+}
 
 InputField.propTypes = {
   label: PropTypes.string.isRequired,
@@ -30,20 +30,20 @@ InputField.propTypes = {
   onChange: PropTypes.func.isRequired,
   min: PropTypes.string,
   max: PropTypes.string,
-};
+}
 
 const EVChargingCalculator = () => {
-  const [batteryCapacity, setBatteryCapacity] = useState(77);
-  const [amperage, setAmperage] = useState(16);
-  const [voltage, setVoltage] = useState(230);
-  const [initialCharge, setInitialCharge] = useState(20);
-  const [targetCharge, setTargetCharge] = useState(80);
+  const [batteryCapacity, setBatteryCapacity] = useState(77)
+  const [amperage, setAmperage] = useState(16)
+  const [voltage, setVoltage] = useState(230)
+  const [initialCharge, setInitialCharge] = useState(20)
+  const [targetCharge, setTargetCharge] = useState(80)
 
   // Dynamically calculate values instead of storing them in state
-  const chargingPower = (3 * amperage * voltage) / 1000; // in kW
-  const chargingSpeed = (chargingPower / batteryCapacity) * 100; // % per hour
-  const chargeNeeded = targetCharge - initialCharge; // % needed
-  const hoursNeeded = chargeNeeded / chargingSpeed; // total hours required
+  const chargingPower = (3 * amperage * voltage) / 1000 // in kW
+  const chargingSpeed = (chargingPower / batteryCapacity) * 100 // % per hour
+  const chargeNeeded = targetCharge - initialCharge // % needed
+  const hoursNeeded = chargeNeeded / chargingSpeed // total hours required
 
   return (
     <div style={styles.container}>
@@ -51,43 +51,43 @@ const EVChargingCalculator = () => {
         <h2 style={styles.title}>EV Charging Calculator</h2>
 
         <InputField
-          label="Battery capacity (kWh)"
+          label='Battery capacity (kWh)'
           value={batteryCapacity}
           onChange={setBatteryCapacity}
-          min="0"
+          min={0}
         />
 
         <div style={styles.twoColumns}>
           <InputField
-            label="Charge current (A)"
+            label='Charge current (A)'
             value={amperage}
             onChange={setAmperage}
             min={0}
             max={16}
           />
           <InputField
-            label="Grid voltage (V)"
+            label='Grid voltage (V)'
             value={voltage}
             onChange={setVoltage}
-            min="0"
+            min={220}
             max={240}
           />
         </div>
 
         <div style={styles.twoColumns}>
           <InputField
-            label="Initial charge (%)"
+            label='Initial charge (%)'
             value={initialCharge}
             onChange={setInitialCharge}
-            min="0"
-            max="100"
+            min={0}
+            max={100}
           />
           <InputField
-            label="Target charge (%)"
+            label='Target charge (%)'
             value={targetCharge}
             onChange={setTargetCharge}
-            min={initialCharge}
-            max="100"
+            min={0}
+            max={100}
           />
         </div>
 
@@ -110,9 +110,9 @@ const EVChargingCalculator = () => {
         </div>
         <div style={styles.githubLink}>
           <a
-            href="https://github.com/ltpk/ev-charging-calc"
-            target="_blank"
-            rel="noopener noreferrer"
+            href='https://github.com/ltpk/ev-charging-calc'
+            target='_blank'
+            rel='noopener noreferrer'
             style={styles.link}
           >
             View on GitHub
@@ -120,7 +120,7 @@ const EVChargingCalculator = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default EVChargingCalculator;
+export default EVChargingCalculator

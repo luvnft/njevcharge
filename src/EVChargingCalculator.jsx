@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import styles from './styles';
 
 const EVChargingCalculator = () => {
-  const [batteryCapacity, setBatteryCapacity] = useState(75);
+  const [batteryCapacity, setBatteryCapacity] = useState(77);
   const [amperage, setAmperage] = useState(16);
   const [voltage, setVoltage] = useState(230);
   const [initialCharge, setInitialCharge] = useState(20);
@@ -40,6 +41,14 @@ const EVChargingCalculator = () => {
       />
     </div>
   );
+
+  InputField.propTypes = {
+    label: PropTypes.string.isRequired,
+    value: PropTypes.number.isRequired,
+    onChange: PropTypes.func.isRequired,
+    min: PropTypes.string,
+    max: PropTypes.string
+  };
 
   return (
     <div style={styles.container}>

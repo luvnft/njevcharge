@@ -1,8 +1,19 @@
-# React + Vite
+# EV charging calculator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple EV charging calculator implemented with React & Vite.
 
-Currently, two official plugins are available:
+Can be used as a quick tool to estimate the charging time needed to reach the desired charge state when some typical charging parameters are known.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## How to run locally
+
+1. Clone this repo
+2. Run `npm install`
+3. Run `npm run dev`
+
+# TODO
+
+- [ ] Fix the issue with inputs losing focus after changing value
+- [ ] General cleanup & optimization (maybe even a complete rewrite, who knows)
+- [ ] Preset battery capacity values for some most common EV's
+- [ ] Integration with spot price information for selecting the optimal charging time
+- [ ] etc.

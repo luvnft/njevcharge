@@ -108,6 +108,16 @@ const EVChargingCalculator = () => {
             <span style={styles.resultValue}>{Math.floor(hoursNeeded)} hours {Math.round((hoursNeeded % 1) * 60)} minutes ({hoursNeeded.toFixed(1)} hours)</span>
           </div>
         </div>
+        <div style={styles.githubLink}>
+          <a
+            href="https://github.com/laurikolehmainen/ev-charging-calc"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={styles.link}
+          >
+            View on GitHub
+          </a>
+        </div>
       </div>
     </div>
   );

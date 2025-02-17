@@ -55,6 +55,18 @@ const styles = {
   },
   resultValue: {
     fontWeight: 'bold'
+  },
+  githubLink: {
+    marginTop: '15px',
+    textAlign: 'center',
+  },
+  link: {
+    color: '#666',
+    textDecoration: 'none',
+    fontSize: '12px',
+    '&:hover': {
+      textDecoration: 'underline'
+    }
   }
 };
 

@@ -2,7 +2,9 @@
 
 A simple EV charging calculator implemented with React & Vite.
 
-Can be used as a quick tool to estimate the charging time needed to reach the desired charge state when some typical charging parameters are known.
+Can be used as a quick tool to calculate the charging time needed to reach the desired charge state when some typical charging parameters are known.
+
+Currently hosted at https://ltpk.github.io/ev-charging-calc/
 
 ## How to run locally
 
@@ -16,4 +18,5 @@ Can be used as a quick tool to estimate the charging time needed to reach the de
 - [ ] General cleanup & optimization (maybe even a complete rewrite, who knows)
 - [ ] Preset battery capacity values for some most common EV's
 - [ ] Integration with spot price information for selecting the optimal charging time
+- [ ] Taking charging efficiency into account
 - [ ] etc.

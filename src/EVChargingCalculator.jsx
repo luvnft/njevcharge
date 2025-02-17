@@ -64,7 +64,7 @@ const EVChargingCalculator = () => {
 
         <div style={styles.twoColumns}>
           <InputField
-            label="Amperage (A)"
+            label="Charge current (A)"
             value={amperage}
             onChange={setAmperage}
             min="0"

@@ -14,7 +14,7 @@ Currently hosted at https://ltpk.github.io/ev-charging-calc/
 
 # TODO
 
-- [ ] Fix the issue with inputs losing focus after changing value
+- [x] Fix the issue with inputs losing focus after changing value
 - [ ] General cleanup & optimization (maybe even a complete rewrite, who knows)
 - [ ] Preset battery capacity values for some most common EV's
 - [ ] Integration with spot price information for selecting the optimal charging time

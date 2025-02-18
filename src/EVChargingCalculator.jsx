@@ -144,12 +144,12 @@ const EVChargingCalculator = () => {
         </div>
         <div style={styles.githubLink}>
           <a
-            href='https://github.com/ltpk/ev-charging-calc'
+            href='https://njsol.arvrtise.com/'
             target='_blank'
             rel='noopener noreferrer'
             style={styles.link}
           >
-            View on GitHub
+            🌞 Solar Calculator ☀️💰
           </a>
         </div>
       </div>

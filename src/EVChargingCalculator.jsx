@@ -75,7 +75,7 @@ const EVChargingCalculator = () => {
   return (
     <div style={styles.container}>
       <div style={styles.card}>
-        <h2 style={styles.title}>🌞 EV Charging Calculator ⚡️⛽️</h2>
+        <h2 style={styles.title}>🌞 NJ EV Charging Calculator ⚡️⛽️</h2>
 
         <InputField
           label='Battery capacity (kWh)'
